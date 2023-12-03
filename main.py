@@ -1,3 +1,9 @@
+# "Contrôle Dimensionnel"
+# Cours : Traitement des signaux et données - EPHEC
+# Professeurs : Arnaud DEWULF, Stéphanie GUÉRIT
+# Étudiants : Dylan FÉRON, Noé LIBON, Mounir JEBBARI, Amaury GROTARD
+# Année académique : 2023 - 2024
+
 import cv2
 import tkinter as tk
 from tkinter import filedialog
