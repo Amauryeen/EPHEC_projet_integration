@@ -8,7 +8,7 @@ import numpy as np
 
 
 def charger_image():
-    chemin_image = filedialog.askopenfilename(title="Sélectionner une image")
+    chemin_image = filedialog.askopenfilename(title="Sélectionner une image", initialdir="images", filetypes=[("Fichiers PNG", "*.png"), ("Fichiers JPG", "*.jpg")])
     return cv2.imread(chemin_image)
 
 def afficher_image(ax, image, title):
