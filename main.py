@@ -31,16 +31,13 @@ def comparer_images():
     image_gris_ref = cv2.cvtColor(image_reference, cv2.COLOR_BGR2GRAY)
     image_gris_cmp = cv2.cvtColor(image_compare, cv2.COLOR_BGR2GRAY)
 
-    # Appliquer un flou pour réduire le bruit et faciliter la détection des contours
-    image_floue_ref = cv2.GaussianBlur(image_gris_ref, (5, 5), 0)
-    image_floue_cmp = cv2.GaussianBlur(image_gris_cmp, (5, 5), 0)
 
     # Détection des contours avec l'algorithme de Canny
     seuil_bas = 50
     seuil_haut = 150
 
-    edges_ref = cv2.Canny(image_floue_ref, seuil_bas, seuil_haut)
-    edges_cmp = cv2.Canny(image_floue_cmp, seuil_bas, seuil_haut)
+    edges_ref = cv2.Canny(image_gris_ref, seuil_bas, seuil_haut)
+    edges_cmp = cv2.Canny(image_gris_cmp, seuil_bas, seuil_haut)
 
     # Trouver les contours dans l'image
     contours_ref, _ = cv2.findContours(edges_ref, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -59,12 +56,12 @@ def comparer_images():
     perimetre_en_cm_cmp = round(perimetre_plaque_cmp / 68.5, 1)
 
     # Comparer les tailles des deux plaques
-    if perimetre_en_cm_ref > perimetre_en_cm_cmp:
+    if abs(perimetre_en_cm_ref - perimetre_en_cm_cmp) <= 0.2:
+        comparaison = "Les deux plaques sont de taille égale."
+    elif perimetre_en_cm_ref > perimetre_en_cm_cmp:
         comparaison = "La première plaque est plus grande que la deuxième."
     elif perimetre_en_cm_ref < perimetre_en_cm_cmp:
         comparaison = "La deuxième plaque est plus grande que la première."
-    else:
-        comparaison = "Les deux plaques sont de taille égale."
 
 
     # Trouver les contours internes
