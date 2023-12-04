@@ -137,7 +137,7 @@ btn_comparer = tk.Button(root, text="Comparer les plaques", command=comparer_ima
 btn_comparer.pack(pady=10)
 
 # Figures pour afficher les images
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 4))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(8, 5))
 
 # Zone de texte pour afficher le résultat de la comparaison
 label_resultat = tk.Label(root, text="", font=("Helvetica", 12))
